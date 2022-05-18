@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "474722753304",
+    "project_id": "gradpro-d76af",
+    "storage_bucket": "gradpro-d76af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474722753304:android:f86cd9e0bc111406939c6d",
+        "android_client_info": {
+          "package_name": "com.example.gradpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474722753304-f4soofut1cdt5bj01huar31ji6kt7d5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLcEmHurMOs39Qt5YjaqGSVFvoVMCQggA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474722753304-f4soofut1cdt5bj01huar31ji6kt7d5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
