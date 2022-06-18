@@ -15,11 +15,14 @@ private const val TAG = "PostsActivity"
 class PostsActivity : AppCompatActivity() {
 
     private lateinit var firestoreDb: FirebaseFirestore
-
+    private lateinit var posts: MutableList<student_posts>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_posts)
+
+        posts = mutableListOf()
+
 
         firestoreDb = FirebaseFirestore.getInstance()
         val postsReference = firestoreDb
