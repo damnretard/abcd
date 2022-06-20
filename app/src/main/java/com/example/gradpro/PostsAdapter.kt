@@ -1,10 +1,12 @@
 package com.example.gradpro
 
 import android.content.Context
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.gradpro.models.student_posts
 import kotlinx.android.synthetic.main.item_post.view.*
 
@@ -26,6 +28,9 @@ class PostsAdapter (val context: Context, val posts: List<student_posts>) :
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind( studentPosts: student_posts) {
             itemView.tvUsername.text = studentPosts.student?.username
+            itemView.tvDescription.text = studentPosts.description
+            Glide.with(context).load(studentPosts.imageUrl).into(itemView.ivPost)
+            itemView.tvRelativeTime.text = DateUtils.getRelativeTimeSpanString(studentPosts.creationTimeMs)
 
 
 

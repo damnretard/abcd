@@ -6,19 +6,17 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.content.ContextCompat.startActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 
 private const val TAG = "ProfileActivity"
-class ProfileActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
-    }
+class ProfileActivity : PostsActivity() {
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_profile, menu)
-        return super.onCreateOptionsMenu(menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
