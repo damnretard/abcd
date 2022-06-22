@@ -3,4 +3,6 @@
     <string name="login">Login</string>
     <string name="your_email">your_email</string>
     <string name="your_password">your_password</string>
+    <string name="choose_image">Choose Image</string>
+    <string name="description">Description</string>
 </resources>
