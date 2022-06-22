@@ -7,16 +7,18 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gradpro.models.student
 import com.example.gradpro.models.student_posts
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_posts.*
 
 private const val TAG = "PostsActivity"
 private const val EXTRA_USERNAME = "EXTRA_USERNAME"
 open class PostsActivity : AppCompatActivity() {
 
+    private var signedInUser: student? = null
     private lateinit var firestoreDb: FirebaseFirestore
     private lateinit var posts: MutableList<student_posts>
     private lateinit var adapter: PostsAdapter
@@ -32,14 +34,27 @@ open class PostsActivity : AppCompatActivity() {
         rvPosts.adapter = adapter
         rvPosts.layoutManager = LinearLayoutManager(this)
 
-
         firestoreDb = FirebaseFirestore.getInstance()
+
+        firestoreDb.collection("students")
+            .document(FirebaseAuth.getInstance().currentUser?.uid as String)
+            .get()
+            .addOnSuccessListener { studentsSnapshot ->
+                signedInUser = studentsSnapshot.toObject(student:: class.java)
+                Log.i(TAG, "signed in student: $signedInUser")
+            }
+            .addOnFailureListener { exception ->
+                Log.i(TAG, "Failure fetching signed in student", exception)
+            }
+
+
         var postsReference = firestoreDb
             .collection("student_posts")
             .limit(30)
             .orderBy("creation_time_ms",Query.Direction.DESCENDING )
         val username = intent.getStringExtra(EXTRA_USERNAME)
         if (username != null){
+            supportActionBar?.title = username
             postsReference = postsReference.whereEqualTo("student.username", username)
 
         }
@@ -67,7 +82,7 @@ open class PostsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_profile) {
             val intent = Intent(this, ProfileActivity::class.java)
-            intent.putExtra(EXTRA_USERNAME, "mansi")
+            intent.putExtra(EXTRA_USERNAME, signedInUser?.username)
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
