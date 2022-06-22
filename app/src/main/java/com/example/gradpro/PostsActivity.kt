@@ -15,7 +15,7 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_posts.*
 
 private const val TAG = "PostsActivity"
-private const val EXTRA_USERNAME = "EXTRA_USERNAME"
+public const val EXTRA_USERNAME = "EXTRA_USERNAME"
 open class PostsActivity : AppCompatActivity() {
 
     private var signedInUser: student? = null
